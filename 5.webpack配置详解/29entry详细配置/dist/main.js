@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log({count:function(n,o){return n*o},add:function(n,o){return n+o}}(1,2)),console.log(count(3,2))})();

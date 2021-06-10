@@ -1,0 +1,2 @@
+!function(){"use strict";console.log(function(){for(var e=arguments.length,n=new Array(e),r=0;r<e;r++)n[r]=arguments[r];return n.reduce((function(e,n){return e+n}),0)}(1,2,3,4)),"serviceWorker"in navigator&&window.addEventListener("load",(function(){navigator.serviceWorker.register("/service-worker.js").then((function(){console.log("successW")})).catch((function(){console.log("fail")}))}))}();
+//# sourceMappingURL=built.b6568c8509.js.map

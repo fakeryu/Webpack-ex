@@ -1,0 +1,1 @@
+(self.webpackChunkmodule=self.webpackChunkmodule||[]).push([[786],{715:(e,u,d)=>{"use strict";function n(e,u){return e+u}d.r(u),d.d(u,{add:()=>n})}}]);

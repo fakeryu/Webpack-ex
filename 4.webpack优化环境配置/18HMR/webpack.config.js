@@ -16,7 +16,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    entry: ['./src/index.js','./src/index.html'],
+    entry: ['./src/index.js', './src/index.html'],
     output: {
         //入口文件输出路径
         filename: 'built.js',
@@ -37,6 +37,38 @@ module.exports = {
             // 打包其他资源（除了html，js，css资源意外的资源）
             {
                 exclude: /\.(css|js|html)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'others'
+                }
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                loader: 'url-loader',
+                options: {
+                    // 图片大小小于8kb，用base64处理
+                    // 优点：减少i请求数量
+                    // 缺点：图片体积会更大
+                    limit: 8 * 1024,
+                    // 问题L因为url-loader默认使用es6模块化解析，而html-loader引入是图片是用commonjs
+                    // 解析式会出问题:[object Module]
+                    // 解决：关闭url-loader的es6模块化，使用commonjs解析
+                    exModule: false,
+                    //给图片重命名
+                    // [hash:10]取图片前10位
+                    // [ext]取文件原来扩展名
+                    name: '[hash:10].[ext]',
+                    outputPath: 'imgs'
+                }
+            }, {
+
+                test: /\.html$/,
+                // 处理html文件中的img图片（负责引入img，从而能被url-loader进行处理）
+                loader: 'html-loader',
+            },
+            // 打包其他资源（除了html，js，css资源意外的资源）
+            {
+                exclude: /\.(css|js|html|less|jpg|png|gif)$/,
                 loader: 'file-loader',
                 options: {
                     outputPath: 'others'
